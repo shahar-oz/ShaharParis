@@ -1,0 +1,170 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="ShaharParis.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>המדריך לפריז</title>
+    <style>
+        a{
+             color:#184d94;
+             text-decoration:none;
+             font-weight:bold;
+             
+        }
+        a:visited{
+            color:#184d94;
+             text-decoration:none;
+             font-weight:bold;
+            
+        }
+        a:hover{
+            text-decoration: underline;
+        }
+        h1{
+            text-align: center;
+            font-family:Guttman Hatzvi,Verdana;
+            font-size:50px;
+            color:aliceblue;
+        }
+        h2{
+            font-size:40px;
+             color:aliceblue;
+            
+        }
+        h3{
+            font-size:30px;
+             color:aliceblue;
+              text-decoration:underline;
+        }
+        p{
+            text-align: center;
+            font-family:Guttman Hatzvi,Verdana;
+            background-color: rgba(240,248,255,0.7);
+            font-size:26px;
+            width:80%;
+        }
+        body{
+            background-image:url(pics/imgback.jpg); height:100%;
+            text-align: center;
+            font-family:Guttman Hatzvi,Verdana;
+        }
+        table{
+           
+            font-family:Guttman Hatzvi,Verdana;
+            background-color: aliceblue;
+            font-size:30px;
+            font-weight:bold;
+            
+        }
+
+        
+        .dropbtn {
+          background-color:aliceblue;
+          font-family:Guttman Hatzvi,Verdana;
+          color: #184d94;
+          font-size: 30px;
+          border:none;
+          font-weight:bold;
+          
+        }
+
+        .dropdown {
+          position: relative;
+          display: inline-block;
+        }
+
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #f1f1f1;
+          min-width: 160px;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+        }
+        .dropdown-content a {
+          color: black;
+          font-size:20px;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+        }
+
+        .dropdown-content a:hover {background-color: #ddd;}
+
+        .dropdown:hover .dropdown-content {display: block;}
+
+        .dropdown:hover .dropbtn {background-color: #3e8e41;}
+        
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body dir="rtl">
+     <h1>המדריך הגדול לפריז</h1>
+    <table align="center" width="1000px" style="border:3px">
+        <tr>
+          
+            <td><a href="homepage.aspx">דף הבית</a></td>
+              <td><div class="dropdown">
+    <button class="dropbtn">מלונות</button>
+    <div class="dropdown-content">
+    <a href="5stars.aspx">5 כוכבים</a>
+    <a href="4stars.aspx">4 כוכבים</a>
+    <a href="3stars.aspx">3 כוכבים</a>
+    </div>
+    </div></td>
+
+            <td><div class="dropdown">
+    <button class="dropbtn">מסעדות</button>
+    <div class="dropdown-content">
+    <a href="cafe.aspx">בתי קפה</a>
+    <a href="brasserie.aspx">בראסרי</a>
+    <a href="fancy.aspx">מסעדות יוקרה</a>
+    </div>
+    </div></td>
+
+           <td><div class="dropdown">
+    <button class="dropbtn">אטרקציות</button>
+    <div class="dropdown-content">
+    <a href="must.aspx">חובה</a>
+    <a href="easy.aspx">רגוע</a>
+    <a href="museum.aspx">מוזיאונים</a>
+    </div>
+    </div></td>
+
+    <%if (Session["shahar"] == null && Session["user"] == null )
+        {%>
+   
+            <td><a href="login.aspx">התחברות</a></td> 
+            <td><a href="regi.aspx">הרשמה</a></td>
+            
+            <%} %>
+
+                <%if (Session["shahar"] != null )
+        {%>
+    
+             <td><a href="admin.aspx"> דף מנהל</a></td>
+            <td><a href="logout.aspx">התנתקות</a></td>
+            
+            <%} %>
+           
+           <%if (Session["user"] != null )
+        {%>
+            <td><a href="User.aspx">התניידות</a></td>
+             <td><a href="profile.aspx"> דף פרופיל</a></td>
+            <td><a href="logout.aspx">התנתקות</a></td>
+           
+            
+            <%} %>   
+    
+   
+        </tr>
+    </table>
+        <div align="center">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+   
+</body>
+</html>
